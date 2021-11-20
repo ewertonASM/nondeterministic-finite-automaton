@@ -14,7 +14,6 @@ class EntryValidator:
         self.compositions_rule = {
             "iniciais": "estados",
             "finais": "estados",
-            # "transicoes": ""
         }
         
         self.patterns = {
@@ -43,20 +42,16 @@ class EntryValidator:
     
     def valid_pattern(self, key, values):
         
-        accept = True
-        
         for value in values:
         
             if not re.search(self.validate_rules[key]["pattern"], value):
-                accept = False
-                break
+                return False
             
             if key in self.compositions_rule:
                 if not value in self.compositions[self.compositions_rule[key]]:
-                    accept = False
-                    break
-                
-        return accept
+                    return False
+        
+        return True
     
     def valid_exact_lenght(self, key, values):
         
