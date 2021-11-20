@@ -1,4 +1,7 @@
+from os import error
 import fire
+from traitlets.traitlets import ValidateHandler
+from EntryValidator import EntryValidator
 
 
 from os import path, stat
@@ -49,6 +52,7 @@ def process(file=str):
     if errors:
         print("errors found:")
         for error in errors: print(error)
+        raise SystemExit(1)
     else:
         print(data)
 
@@ -93,7 +97,6 @@ def process(file=str):
         for state in stateTransitions:
             newState = ProcessState(state, currentState.path, currentState.sequence)
             processStates.append(newState)
-        
 
 if __name__ == '__main__':
     fire.Fire(process)
