@@ -1,8 +1,13 @@
 alfabeto=a,b
-estados=q0,q1
+estados=q0,q1,q2,q3
 inicial=q0
-finais=q1
+finais=q3
 transicoes
 q0,q0,a
 q0,q0,b
 q0,q1,b
+q1,q2,episilon
+q1,q2,a
+q2,q3,b
+q3,q3,a
+q3,q3,b
