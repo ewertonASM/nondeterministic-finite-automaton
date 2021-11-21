@@ -1,14 +1,8 @@
-from os import error
 import fire
-from traitlets.traitlets import ValidateHandler
+
 from EntryValidator import EntryValidator
-
-
-from os import path, stat
 from ProcessState import ProcessState
 from State import State
-from EntryValidator import EntryValidator
-
 
 
 def entry_parser(lines=list):
@@ -47,14 +41,21 @@ def process(file=str):
         print("Could not process the file")
         raise SystemExit(1)
     
-    errors = EntryValidator().validator_with_tag(data=data)
+    errors, alphabet = EntryValidator().validator_with_tag(data=data)
     
     if errors:
         print("errors found:")
         for error in errors: print(error)
         raise SystemExit(1)
-    else:
-        print(data)
+
+    input_chain = input("Digite a sua cadeia: ")
+    
+    sequence = list(input_chain.strip());
+
+    for symbol in sequence:
+        if not symbol in alphabet:
+            print("Existem elementos incompativeis na cadeia")
+            raise SystemExit(1)        
 
     states = {}
     for state in data["estados"]:
@@ -63,10 +64,7 @@ def process(file=str):
     for transition in data["transicoes"]:
         states[transition[0]].addTransition(transition[2], transition[1])
     
-    sequence = input("Digite a sua cadeia: ")
-    # sequence = "abbb"
     processStates = []
-    sequence = list(sequence.strip());
     currentState = ProcessState(data["inicial"][0], [], sequence)
     processStates.append(currentState)
 

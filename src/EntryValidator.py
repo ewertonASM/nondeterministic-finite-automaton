@@ -7,7 +7,7 @@ class EntryValidator:
         self.mandatory_entries = {"alfabeto","estados","inicial", "transicoes"}
         
         self.compositions = {
-            "alfabeto": [],
+            "alfabeto": ["episilon"],
             "estados": [],
         }
         
@@ -17,9 +17,9 @@ class EntryValidator:
         }
         
         self.patterns = {
-            "alphabet": r'^[a-z]$',
+            "alphabet": r'^[a-z]$|^epsilon$',
             "states": r'^q[0-9]+$',
-            "transition": r'^q[0-9]+q[0-9]+[a-z]$'
+            "transition": r'^q[0-9]+q[0-9]+[a-z]$|^q[0-9]+q[0-9]+episilon$'
         }
         
         self.validate_rules = {
@@ -91,6 +91,6 @@ class EntryValidator:
                         errors.append(key)
                         
             if key in self.compositions and not errors:
-                self.compositions[key] = values
+                self.compositions[key].extend(values)
 
-        return errors
+        return errors, set(self.compositions["alfabeto"])
