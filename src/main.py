@@ -72,7 +72,7 @@ def process(file=str):
     print("Estados:", data["estados"])
     print("Estado inicial:", data["inicial"])
     print("Estados finais:", data["finais"])
-    print("Sequence:", sequence)
+    print("Sequência:", sequence)
     
     print()
 

@@ -12,6 +12,6 @@ class ProcessState:
     
     def printPath(self, accept: bool) -> None:
         if (accept):
-            print("Accepted:", '->'.join(self.path))
+            print("Aceita:", '->'.join(self.path))
         else:
-            print("Rejected:", '->'.join(self.path))
+            print("Rejeitada:", '->'.join(self.path))
