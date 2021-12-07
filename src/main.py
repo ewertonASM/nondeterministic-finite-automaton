@@ -77,6 +77,7 @@ def process(file=str):
     print()
 
     while len(processStates) > 0:
+        stateTransitions = []
         currentState = processStates.pop(0)
 
         if len(currentState.sequence) == 0:
@@ -86,15 +87,22 @@ def process(file=str):
         transition = currentState.sequence.pop(0)
         stateTransitions = states[currentState.key].getTransitions(transition)
 
-        if stateTransitions is None:
-            stateTransitions = states[currentState.key].getTransitions("episilon")
-            if stateTransitions is None:
+        if not stateTransitions:
+            if not stateTransitions:
                 currentState.printPath(False)
                 continue
         
+        episilonStates = []
         for state in stateTransitions:
             newState = ProcessState(state, currentState.path, currentState.sequence)
+            if states[newState.key].getTransitions("episilon"):
+                episilonStates.extend(states[newState.key].getTransitions("episilon"))
             processStates.append(newState)
+
+        if episilonStates:
+            for state in episilonStates:
+                newState = ProcessState(state, currentState.path, currentState.sequence)
+                processStates.append(newState)
 
 if __name__ == '__main__':
     fire.Fire(process)
