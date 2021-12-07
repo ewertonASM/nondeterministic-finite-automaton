@@ -2,6 +2,10 @@
 
 the application simulates the operation of nondeterministic-finite-automaton
 
+### Presentation
+
+* Apresentação do projeto - <https://www.youtube.com/watch?v=BkeXghNSXpo>
+
 ### Prerequisites
 
 Before starting the installation, you need to install some prerequisites:
