@@ -68,11 +68,11 @@ def process(file=str):
     currentState = ProcessState(data["inicial"][0], [], sequence)
     processStates.append(currentState)
 
-    print("Alfabeto:", data["alfabeto"])
-    print("Estados:", data["estados"])
-    print("Estado inicial:", data["inicial"])
-    print("Estados finais:", data["finais"])
-    print("Sequência:", sequence)
+    print("Alfabeto:", ", ".join(data["alfabeto"]))
+    print("Estados:", ", ".join(data["estados"]))
+    print("Estado inicial:", ", ".join(data["inicial"]))
+    print("Estados finais:", ", ".join(data["finais"]))
+    print("Sequência:", input_chain)
     
     print()
 
@@ -87,10 +87,10 @@ def process(file=str):
         transition = currentState.sequence.pop(0)
         stateTransitions = states[currentState.key].getTransitions(transition)
 
+
         if not stateTransitions:
-            if not stateTransitions:
-                currentState.printPath(False)
-                continue
+            currentState.printPath(False)
+            continue
         
         episilonStates = []
         for state in stateTransitions:
