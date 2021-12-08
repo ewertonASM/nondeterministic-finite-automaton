@@ -4,7 +4,7 @@ the application simulates the operation of nondeterministic-finite-automaton
 
 ### Presentation
 
-* Apresentação do projeto - <https://www.youtube.com/watch?v=BkeXghNSXpo>
+* project presentation - <https://www.youtube.com/watch?v=BkeXghNSXpo>
 
 ### Prerequisites
 
